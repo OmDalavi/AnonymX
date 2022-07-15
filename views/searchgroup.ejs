@@ -1,0 +1,42 @@
+<%- include("header") -%>
+<%- include("nav") -%>
+
+<h1 class="text-center mt-2 display-4">Search Group</h1>
+<div class="container">
+    <form method="post" action="/searchGroup" class="d-flex justify-content-center mt-3" >
+        <input name="groupName" class="form-control" style="width:75%;border-radius:10px;border:2px solid" type="text" placeholder="Enter Group Name (Case Sensitive)">
+        <br>
+        <button type="submit" class="btn btn-primary btn-lg ms-3">Search</button>
+    </form>
+</div>
+
+<table class="table d-flex justify-content-center mt-5 display-6">
+    <tr>
+        <td>
+            <% if(typeof message != "undefined"){ %>
+                <% if(message==1){ %>
+                        Available : <%= groupName %>
+                        <form class="d-flex justify-content-center" action="/addMe" method="post">
+                            <input type="hidden" name="groupName" value="<%= groupName %>">
+                            <button type="submit" class="btn btn-success btn-lg mt-3">Add Me</button>
+                        </form>
+                    <% delete(message); %> 
+                    <% delete(groupName); %>
+                <% }else if(message==2){ %>
+                        Not Available : <%= groupName %>
+                    <% delete(message); %>  
+                    <% delete(groupName); %>  
+                <% }else if(message==3){ %>
+                    <p class="alert alert-danger text-center">Server Error. Please Try After Some Time.</p>
+                    <% delete(message); %>
+                <% }else if(message==4){ %>
+                    <p class="alert alert-success text-center">User Added In The Group Successfully .</p>
+                    <% delete(message); %>
+                <% } %>
+            <% } %>
+           
+        </td>
+    </tr>
+</table>
+
+<%- include("footer") -%>

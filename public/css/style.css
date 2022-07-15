@@ -1,0 +1,30 @@
+body{
+    margin:0;
+    padding:0;  
+    
+}
+
+
+@media(max-width:550px){
+    .search-grp-btn{
+        margin-top:3%;
+        margin-left:0;
+    }
+    
+}
+@media(max-width:390px){
+    .create-grp-btn{
+        margin-top:3%;
+        margin-left:0;
+    }
+    
+}
+.message-display{
+    width:75%;
+    height:300px;
+    overflow-y: scroll;
+    border-radius: 30px;
+    border: 1px solid black;
+    
+    
+}

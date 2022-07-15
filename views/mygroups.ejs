@@ -1,0 +1,72 @@
+<%- include("header") -%>
+    <%- include("nav") -%>
+
+
+
+        <div class="jumbotron jumbotron-fluid mt-3">
+            <div class="container">
+                <h1 class="display-5">My Groups</h1>
+                <p style="font-size:30px">Click on the chat icon to enter anonymous group chat</p>
+            </div>
+            <table class="container table table-hover mt-5" style="width: 75%;">
+                <% var len=userGroupList.length; %>
+                <% if(len==0){ %>
+                    <p class="mt-5 text-center display-6 text-danger">You are not a member of any group.</p>
+                    <p class="text-center display-6">Search group name to become a member of that group.</p>
+                <% }else{ %>
+                    <% for(var i=0;i < len;i++){ %>
+                        <tr>
+                            <td>
+                                <h2>
+                                    <%= userGroupList[i].groupName %>
+                                </h2>
+                            </td>
+                            <td class="text-right" align="right">
+                                <i class="far fa-comment-dots groupsChat" style="font-size: 40px;color:green"></i>
+                                <i index="<%= i %>" class="far fa-trash-alt ms-4 deleteChat" style="font-size: 40px;color:red"></i>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                    <% } %>
+            </table>
+        </div>
+
+        <!-- Delete Warning Modal -->
+        <div class="modal fade" id="deleteWarning" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteWarning">Are you sure you want to leave this group ?</h5>
+                  
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-center text-danger" id="groupNameH2"></h2>
+                  <form action="/deleteGroup" method="POST">
+                    
+                    <input type="hidden" name="groupName" value="" id="groupName">
+                    
+                    
+                      <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary " id="deleteButton">Confirm Leave</button>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      
+                        </div>
+                  </form>
+
+                </div>
+                
+                  
+                
+              </div>
+            </div>
+          </div>
+
+
+
+
+        <script type="text/javascript" src="../javascript/index.js"></script>
+
+
+        <%- include("footer") -%>

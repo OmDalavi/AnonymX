@@ -1,0 +1,29 @@
+<%- include("header") -%>
+
+    <% if(typeof message !='undefined' ){ %>
+        <% if(message==1){ %>
+            <div class="alert alert-success" role="alert">
+                Your account has been created successfully !!! Click to Log in
+                <a href="/login"><button class="btn btn-primary btn-lg">Log in</button></a>
+            </div>
+            <% delete(message) %>
+                <% }else if(message==2){ %>
+                    <div class="alert alert-success" role="alert">
+                        Your account has been created successfully !!! Click to Log in
+                        <p>Wrong Password</p>
+                    </div>
+                    <% delete(message) %>
+                        <% }else if(message==3){ %>
+                            <div class="alert alert-danger text-center display-5" role="alert">
+                                Please Log in first !!<br>
+                                <a href="/login"><button class="btn btn-primary btn-lg">Log in</button></a>
+                            </div>
+                            <% delete(message) %>
+                                <% }else if(message==4){ %>
+                                    <div class="alert alert-danger text-center display-5" role="alert">
+                                        Group Name Already Exists :(<br>
+                                        <a href="/createGroup"><button class="btn btn-primary btn-lg">Create Group</button></a>
+                                    </div>
+                                    <% delete(message) %>
+                                        <% } %>
+                                            <% } %>

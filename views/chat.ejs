@@ -1,0 +1,43 @@
+<%- include("header") -%>
+<%- include("nav") -%>
+
+<h1 class="text-center mt-2">GroupChat : <%= groupName %></h1>
+<hr>
+
+<div class="container message-display">
+    <table class="table ms-2 text-dark">
+        <% var len=messages.length; %>
+        <% for(i=0;i< len; i++){ %>
+            <% if(i==len-1){ %>
+                <tr class="last-message"><td><%= messages[i] %> </td></tr>
+                <% continue ; %>
+            <% } %> 
+            <tr><td><%= messages[i] %> </td></tr>
+        <% } %>
+    </table>
+</div>
+<form id="chatForm" action="/chat" method="post" class="d-flex justify-content-center mt-3">
+    <input type="hidden" name="groupName" value="<%= groupName %>">
+    <input class="form-control" type="text" placeholder="Enter Your Message" style="width:65%;border-radius:10px;border:2px solid" name="message">
+    <button class="" type="submit" style="border:none;background-color:white"><i class="fas fa-arrow-circle-right ms-3" style="font-size: 35px;border-radius: 100%;color:green"></i></button>
+    
+    
+</form>
+
+<script>
+    var lastMessage=document.querySelector(".last-message");
+    document.querySelector('.message-display').scrollTop = lastMessage.offsetHeight + lastMessage.offsetTop;
+    
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  socket.on('chat',()=>{
+    location.reload();
+  });
+  
+  
+  
+</script>
+
+<%- include("footer") -%>
